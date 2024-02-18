@@ -162,3 +162,4 @@ cython_debug/
 database/
 H2020_projects_with_vectors.csv
 HORIZON_projects_with_vectors.csv
+sandbox.ipynb
