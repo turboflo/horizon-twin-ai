@@ -1,4 +1,4 @@
-def compare_projects_prompt(my_project, existing_project):
+def compare_project_prompt(my_project, existing_project):
 
     info_sys = {
         "role": "system",

@@ -1,6 +1,6 @@
 from openai import OpenAI
 from comparison import Comparison
-from prompt import compare_projects_prompt
+from prompt import compare_project_prompt
 import json
 
 
@@ -9,8 +9,8 @@ class GPTClient:
         self.client = OpenAI(api_key=api_key)
         self.model_name = model_name
 
-    def compare_projects(self, my_project: str, existing_project: str) -> Comparison:
-        prompt = compare_projects_prompt(my_project, existing_project)
+    def compare_project(self, my_project: str, existing_project: str) -> Comparison:
+        prompt = compare_project_prompt(my_project, existing_project)
         completion = self.client.chat.completions.create(
             model=self.model_name,
             messages=prompt

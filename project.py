@@ -6,3 +6,6 @@ class Project:
         self.values = values
         self.title = title
         self.objective = objective
+
+    def title_and_objective(self):
+        return f"{self.title}\n{self.objective}"

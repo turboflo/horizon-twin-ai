@@ -10,7 +10,9 @@ class PineconeClient:
         self.index = pc.Index(index_name)
         self.model = SentenceTransformer(model_name)
 
-    def search(self, query, top_k=5, include_values=True, include_metadata=True) -> list[Project]:
+    def search(self, query: str, top_k: int = 5,
+               include_values: bool = False,
+               include_metadata: bool = True) -> list[Project]:
         vectors = self.model.encode([query])
         vector = vectors[0].tolist()
         results = self.index.query(vector=vector,
