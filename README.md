@@ -6,6 +6,8 @@ HorizonTwinAI is an innovative tool designed to assist researchers and grant app
 
 ---
 ## System Workflow
+> :information_source: **Important Notice:** The CORDIS API, my preferred data source, was unavailable during development, leading to reliance on a dataset last updated on 07.01.2024. This may affect the search results' accuracy and completeness.
+
 ```mermaid
 flowchart LR
     A[Start: User Input] --> B[Vectorizing Input]
@@ -13,4 +15,3 @@ flowchart LR
     C --> D[OpenAI GPT Evaluation]
     D --> E[End: Display Results]
 ```
-> :information_source: **Important Notice:** The CORDIS API, my preferred data source, was unavailable during development, leading to reliance on a dataset last updated on 07.01.2024. This may affect the search results' accuracy and completeness.
