@@ -3,6 +3,7 @@ import streamlit as st
 import os
 from horizon_twin_ai.result import Result
 from horizon_twin_ai.client import Client
+from horizon_twin_ai.mock_search import mock_search_and_compare
 from dotenv import load_dotenv
 
 # Load environment variables from a .env file
@@ -11,6 +12,7 @@ load_dotenv()
 # Retrieve API keys from environment variables
 PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+DEV_MODE = os.environ.get("DEV_MODE", "False").lower() in ["true", "1"]
 
 # Initialize the HorizonTwinClient with API keys
 client = Client(pinecone_api_key=PINECONE_API_KEY,
@@ -51,6 +53,12 @@ def show_result(result: Result):
 # Set the title of the Streamlit application
 st.title(":robot_face: HorizonTwinAI")
 
+# Toggle to use mock api request for testing purposes
+if DEV_MODE:
+    use_mock = st.toggle("Use Mock API request", False)
+else:
+    use_mock = False
+
 # Input area for users to enter their project description
 input_text = st.text_area("Enter your project description:")
 
@@ -72,5 +80,13 @@ with st.container():
         # Show a spinner while processing
         with st.spinner("Searching for similar projects and comparing them..."):
             # Iterate through the results and display each
-            for result in client.search_and_compare(input_text, top_k=top_k, model=model):
+            results = []
+            if use_mock:
+                results = mock_search_and_compare(
+                    input_text, top_k=top_k)
+            else:
+                results = client.search_and_compare(
+                    input_text, top_k=top_k, model=model)
+
+            for result in results:
                 show_result(result=result)

@@ -20,4 +20,7 @@ class Client():
             )
             results.append(Result(
                 input=project_description, project=project, comparison=comparison))
-        return results
+        # Sort the results by comparison.score in descending order
+        sorted_results = sorted(
+            results, key=lambda x: x.comparison.score, reverse=True)
+        return sorted_results
