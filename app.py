@@ -13,7 +13,8 @@ PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 # Initialize the HorizonTwinClient with API keys
-client = HorizonTwinClient(pinecone_api_key=PINECONE_API_KEY, openai_api_key=OPENAI_API_KEY)
+client = HorizonTwinClient(
+    pinecone_api_key=PINECONE_API_KEY, openai_api_key=OPENAI_API_KEY)
 
 
 def show_result(result: HorizonTwinResult):
@@ -58,7 +59,8 @@ with col1:
 
 with col2:
     # Input for selecting the number of projects to compare (between 1 and 10)
-    top_k = st.number_input("Number of projects to compare", min_value=1, max_value=10, value=3, step=1)
+    top_k = st.number_input("Number of projects to compare",
+                            min_value=1, max_value=10, value=3, step=1)
 
 # Container for the run button and results display
 with st.container():
