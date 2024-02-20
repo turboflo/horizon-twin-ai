@@ -1,7 +1,7 @@
 import streamlit as st
 import os
-from horizon_twin_result import HorizonTwinResult
-from horizon_twin_client import HorizonTwinClient
+from horizon_twin_ai.horizon_twin_result import HorizonTwinResult
+from horizon_twin_ai.horizon_twin_client import HorizonTwinClient
 from dotenv import load_dotenv
 
 load_dotenv()
