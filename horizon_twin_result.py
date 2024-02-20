@@ -2,7 +2,7 @@ from project import Project
 from comparison import Comparison
 
 
-class SynergyResult:
+class HorizonTwinResult:
     def __init__(self, input: str, project: Project, comparison: Comparison):
         self.input = input
         self.project = project

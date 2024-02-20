@@ -1,9 +1,9 @@
-from synergy_result import SynergyResult
+from horizon_twin_result import HorizonTwinResult
 from project import Project
 from comparison import Comparison
 
 
-def search_and_compare(project_description: str, top_k=5) -> list[SynergyResult]:
+def search_and_compare(project_description: str, top_k=5) -> list[HorizonTwinResult]:
     project = Project(
         id="mock_id",
         score=0.756342947,
@@ -18,7 +18,7 @@ def search_and_compare(project_description: str, top_k=5) -> list[SynergyResult]
         score=75,
         reason="The similarity score is high because both projects share a common goal of promoting renewable energy sources and sustainability, albeit with slightly different emphases on specific aspects.",
     )
-    mock_result = SynergyResult(
+    mock_result = HorizonTwinResult(
         input=project_description,
         project=project,
         comparison=comparison,

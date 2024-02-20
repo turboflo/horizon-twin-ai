@@ -1,13 +1,13 @@
 import streamlit as st
 import os
-from synergy_result import SynergyResult
-from horizon_synergy_ai import HorizonSynergyAI
+from horizon_twin_result import HorizonTwinResult
+from horizon_twin_client import HorizonTwinClient
 from dotenv import load_dotenv
 
 load_dotenv()
 
 
-def show_result(result: SynergyResult):
+def show_result(result: HorizonTwinResult):
     with st.container():
         st.write(result.comparison.score, result.project.title)
         st.write(result.comparison.summary)
@@ -27,10 +27,10 @@ def show_result(result: SynergyResult):
 
 PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-client = HorizonSynergyAI(pinecone_api_key=PINECONE_API_KEY, openai_api_key=OPENAI_API_KEY)
+client = HorizonTwinClient(pinecone_api_key=PINECONE_API_KEY, openai_api_key=OPENAI_API_KEY)
 
 # Streamlit app main code
-st.title(":robot_face: HorizonSynergyAI")
+st.title(":robot_face: HorizonTwinAI")
 
 # Create a text input area
 input_text = st.text_area("Enter your project description:")
