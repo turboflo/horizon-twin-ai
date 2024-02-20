@@ -1,4 +1,3 @@
-
 class Project:
     def __init__(self, id: str, score: float, values: list[float], title: str, objective: str):
         self.id = id

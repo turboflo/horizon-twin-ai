@@ -1,8 +1,8 @@
-from project import Project
-from comparison import Comparison
+from horizon_twin_ai.project import Project
+from horizon_twin_ai.comparison import Comparison
 
 
-class HorizonTwinResult:
+class Result:
     def __init__(self, input: str, project: Project, comparison: Comparison):
         self.input = input
         self.project = project

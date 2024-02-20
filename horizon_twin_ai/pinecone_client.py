@@ -1,7 +1,6 @@
-
 from sentence_transformers import SentenceTransformer
 from pinecone import Pinecone
-from project import Project
+from horizon_twin_ai.project import Project
 
 
 class PineconeClient:

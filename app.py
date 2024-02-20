@@ -1,8 +1,8 @@
 # Import necessary libraries and modules
 import streamlit as st
 import os
-from horizon_twin_ai.horizon_twin_result import HorizonTwinResult
-from horizon_twin_ai.horizon_twin_client import HorizonTwinClient
+from horizon_twin_ai.result import Result
+from horizon_twin_ai.client import Client
 from dotenv import load_dotenv
 
 # Load environment variables from a .env file
@@ -13,11 +13,11 @@ PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 # Initialize the HorizonTwinClient with API keys
-client = HorizonTwinClient(
-    pinecone_api_key=PINECONE_API_KEY, openai_api_key=OPENAI_API_KEY)
+client = Client(pinecone_api_key=PINECONE_API_KEY,
+                openai_api_key=OPENAI_API_KEY)
 
 
-def show_result(result: HorizonTwinResult):
+def show_result(result: Result):
     """
     Display the result of a comparison between projects in a Streamlit application.
 
@@ -40,6 +40,9 @@ def show_result(result: HorizonTwinResult):
             st.divider()  # Visual divider
             st.markdown("**Score Reasoning**")
             st.write(result.comparison.reason)
+            st.divider()
+            st.markdown("**Vector Similarity**")
+            st.write(result.project.score)
             st.divider()  # Visual divider
             st.markdown("**Original Objective**")
             st.write(result.project.objective)

@@ -1,9 +1,9 @@
-from horizon_twin_result import HorizonTwinResult
-from project import Project
-from comparison import Comparison
+from horizon_twin_ai.result import Result
+from horizon_twin_ai.project import Project
+from horizon_twin_ai.comparison import Comparison
 
 
-def search_and_compare(project_description: str, top_k: int = 5) -> list[HorizonTwinResult]:
+def search_and_compare(project_description: str, top_k: int = 5) -> list[Result]:
     project = Project(
         id="mock_id",
         score=0.756342947,
@@ -18,7 +18,7 @@ def search_and_compare(project_description: str, top_k: int = 5) -> list[Horizon
         score=75,
         reason="The similarity score is high because both projects share a common goal of promoting renewable energy sources and sustainability, albeit with slightly different emphases on specific aspects.",
     )
-    mock_result = HorizonTwinResult(
+    mock_result = Result(
         input=project_description,
         project=project,
         comparison=comparison,

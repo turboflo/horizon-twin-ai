@@ -1,6 +1,6 @@
 from openai import OpenAI
-from comparison import Comparison
-from prompt import compare_project_prompt
+from horizon_twin_ai.comparison import Comparison
+from horizon_twin_ai.prompt import compare_project_prompt
 import json
 
 
