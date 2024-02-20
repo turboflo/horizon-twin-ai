@@ -17,6 +17,7 @@ class HorizonTwinClient():
                 my_project=project_description,
                 existing_project=project.title_and_objective(),
                 model=model,
-                )
-            results.append(HorizonTwinResult(input=project_description, project=project, comparison=comparison))
+            )
+            results.append(HorizonTwinResult(
+                input=project_description, project=project, comparison=comparison))
         return results
