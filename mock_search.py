@@ -3,7 +3,7 @@ from project import Project
 from comparison import Comparison
 
 
-def search_and_compare(project_description: str, top_k=5) -> list[HorizonTwinResult]:
+def search_and_compare(project_description: str, top_k: int = 5) -> list[HorizonTwinResult]:
     project = Project(
         id="mock_id",
         score=0.756342947,

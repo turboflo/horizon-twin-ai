@@ -5,15 +5,16 @@ from project import Project
 
 
 class PineconeClient:
-    def __init__(self, api_key, index_name="horizon-projects", model_name="sentence-transformers/all-mpnet-base-v2"):
+    def __init__(self, api_key: str, index_name: str = "horizon-projects",
+                 model_name: str = "sentence-transformers/all-mpnet-base-v2"):
         pc = Pinecone(api_key=api_key)
-        self.index = pc.Index(index_name)
-        self.model = SentenceTransformer(model_name)
+        self.index = pc.Index(name=index_name)
+        self.model = SentenceTransformer(model_name_or_path=model_name)
 
     def search(self, query: str, top_k: int = 5,
                include_values: bool = False,
                include_metadata: bool = True) -> list[Project]:
-        vectors = self.model.encode([query])
+        vectors = self.model.encode(sentences=[query])
         vector = vectors[0].tolist()
         results = self.index.query(vector=vector,
                                    top_k=top_k,

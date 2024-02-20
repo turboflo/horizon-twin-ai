@@ -1,6 +1,6 @@
 
 class Project:
-    def __init__(self, id, score, values, title, objective):
+    def __init__(self, id: str, score: float, values: list[float], title: str, objective: str):
         self.id = id
         self.score = score
         self.values = values

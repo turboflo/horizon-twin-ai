@@ -47,4 +47,4 @@ with st.container():
         with st.spinner("Searching for simmilar projects and comparing them..."):
             # for result in client.search_and_compare(input_text, top_k=3):
             for result in client.search_and_compare(input_text, top_k=top_k, model=model):
-                show_result(result)
+                show_result(result=result)

@@ -1,4 +1,4 @@
-def compare_project_prompt(my_project, existing_project):
+def compare_project_prompt(my_project: str, existing_project: str) -> list[dict[str, str]]:
 
     info_sys = {
         "role": "system",
