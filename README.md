@@ -1,4 +1,4 @@
-# HorizonTwinAI
+# 🤖 HorizonTwinAI
 
 ```mermaid
 flowchart LR
