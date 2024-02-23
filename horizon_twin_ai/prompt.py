@@ -1,18 +1,22 @@
-def compare_project_prompt(my_project: str, existing_project: str) -> list[dict[str, str]]:
+def compare_project_prompt(
+    my_project: str, existing_project: str
+) -> list[dict[str, str]]:
     # Instruction for the GPT system role: setting the context for the task with a personal touch.
     info_sys = {
         "role": "system",
-        "content": ("As an assistant to an academic researcher, your task is to analyze a provided "
-                    "project description and compare it with the researcher's project idea. "
-                    "Evaluate their relevance, similarities, and differences to assist in understanding "
-                    "how the existing project aligns with the researcher's objectives. "
-                    "Please use 'your' to directly address the researcher in a personalized manner.")
+        "content": (
+            "As an assistant to an academic researcher, your task is to analyze a provided "
+            "project description and compare it with the researcher's project idea. "
+            "Evaluate their relevance, similarities, and differences to assist in understanding "
+            "how the existing project aligns with the researcher's objectives. "
+            "Please use 'your' to directly address the researcher in a personalized manner."
+        ),
     }
 
     # User prompt: Detailed questions and formatting instructions for the response, emphasizing personalization.
     info_user = {
         "role": "user",
-        "content": f'''#### Begin Questions ####
+        "content": f"""#### Begin Questions ####
         Q1: Provide a one-sentence summary of the existing project.
         Q2: Identify and describe similarities between this existing project and your idea.
         Q3: Enumerate the differences between the existing project and your idea.
@@ -42,6 +46,6 @@ def compare_project_prompt(my_project: str, existing_project: str) -> list[dict[
         Existing project information: [{existing_project}].
         Your project description: [{my_project}].
         #### End Input ####
-        '''
+        """,
     }
     return [info_sys, info_user]

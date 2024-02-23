@@ -12,7 +12,7 @@ def mock_search_and_compare(project_description: str, top_k: int = 5) -> list[Re
             score=random.uniform(0.5, 1.0),  # Random score between 0.5 and 1.0
             values=None,
             title="Mock Project Title",
-            objective="This is a mock project description. It aims to demonstrate a generic approach to integrating renewable energy solutions in rural areas, focusing on sustainability, regional development, and optimizing the use of local resources."
+            objective="This is a mock project description. It aims to demonstrate a generic approach to integrating renewable energy solutions in rural areas, focusing on sustainability, regional development, and optimizing the use of local resources.",
         )
 
         comparison = Comparison(
@@ -21,7 +21,7 @@ def mock_search_and_compare(project_description: str, top_k: int = 5) -> list[Re
             difference="While the mock project emphasizes biogas and biomass, your project may focus on other renewable sources or aspects of rural development.",
             # Random similarity score between 60 and 100
             score=random.randint(50, 100),
-            reason="The similarity and difference in focus result in a randomly assigned score reflecting the conceptual alignment between the projects."
+            reason="The similarity and difference in focus result in a randomly assigned score reflecting the conceptual alignment between the projects.",
         )
 
         mock_result = Result(
@@ -33,7 +33,6 @@ def mock_search_and_compare(project_description: str, top_k: int = 5) -> list[Re
         results.append(mock_result)
 
     # Sort the results by comparison.score in descending order
-    sorted_results = sorted(
-        results, key=lambda x: x.comparison.score, reverse=True)
+    sorted_results = sorted(results, key=lambda x: x.comparison.score, reverse=True)
 
     return sorted_results

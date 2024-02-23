@@ -15,8 +15,7 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 DEV_MODE = os.environ.get("DEV_MODE", "False").lower() in ["true", "1"]
 
 # Initialize the HorizonTwinClient with API keys
-client = Client(pinecone_api_key=PINECONE_API_KEY,
-                openai_api_key=OPENAI_API_KEY)
+client = Client(pinecone_api_key=PINECONE_API_KEY, openai_api_key=OPENAI_API_KEY)
 
 
 def show_result(result: Result):
@@ -66,12 +65,13 @@ input_text = st.text_area("Enter your project description:")
 col1, col2 = st.columns(2)
 with col1:
     # Dropdown for selecting the model
-    model = st.selectbox('Model', ('gpt-3.5-turbo', 'gpt-4-turbo-preview'))
+    model = st.selectbox("Model", ("gpt-3.5-turbo", "gpt-4-turbo-preview"))
 
 with col2:
     # Input for selecting the number of projects to compare (between 1 and 10)
-    top_k = st.number_input("Number of projects to compare",
-                            min_value=1, max_value=10, value=3, step=1)
+    top_k = st.number_input(
+        "Number of projects to compare", min_value=1, max_value=10, value=3, step=1
+    )
 
 # Container for the run button and results display
 with st.container():
@@ -82,11 +82,11 @@ with st.container():
             # Iterate through the results and display each
             results = []
             if use_mock:
-                results = mock_search_and_compare(
-                    input_text, top_k=top_k)
+                results = mock_search_and_compare(input_text, top_k=top_k)
             else:
                 results = client.search_and_compare(
-                    input_text, top_k=top_k, model=model)
+                    input_text, top_k=top_k, model=model
+                )
 
             for result in results:
                 show_result(result=result)

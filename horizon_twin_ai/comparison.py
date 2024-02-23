@@ -11,9 +11,9 @@ class Comparison:
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]):
-        summary = data['Summary']
-        similarity = data['Similarity']
-        difference = data['Difference']
-        score = data['Score']
-        reason = data['Reason']
+        summary = data["Summary"]
+        similarity = data["Similarity"]
+        difference = data["Difference"]
+        score = data["Score"]
+        reason = data["Reason"]
         return cls(summary, similarity, difference, score, reason)
