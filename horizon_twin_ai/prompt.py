@@ -1,37 +1,47 @@
 def compare_project_prompt(my_project: str, existing_project: str) -> list[dict[str, str]]:
-
+    # Instruction for the GPT system role: setting the context for the task with a personal touch.
     info_sys = {
         "role": "system",
-        "content": "You are an academic researcher's assistant, I want to you read a project description and tell me how it is relevant to my idea."
+        "content": ("As an assistant to an academic researcher, your task is to analyze a provided "
+                    "project description and compare it with the researcher's project idea. "
+                    "Evaluate their relevance, similarities, and differences to assist in understanding "
+                    "how the existing project aligns with the researcher's objectives. "
+                    "Please use 'your' to directly address the researcher in a personalized manner.")
     }
 
+    # User prompt: Detailed questions and formatting instructions for the response, emphasizing personalization.
     info_user = {
         "role": "user",
-        "content": f'''####Begin Questions####
-        Q1: Write a one-sentence summary of the input project.
-        Q2: What are the similarities between this project and my idea?
-        Q3: What are the differences between the project and my idea?
-        Q4: Please provide a similarity score from 0 to 100, where a higher score indicates greater relevance between two projects. Use the following calibration for the scores:
-        0-20: Not relevant; Projects from different fields with no shared methodologies or insights, e.g., one project on natural language processing and the other on computer graphics.
-        20-40: Somewhat relevant; Projects from the same subfield, such as adversarial learning, neural rendering, or tangible input interfaces.
-        40-60: Relevant; Projects addressing similar problems (e.g., increasing the robustness of adversarial learning, tangible input interfaces in AR), or using similar methodologies to solve different problems. Projects with this level of similarity should be considered for citation.
-        60-80: Very relevant; Projects addressing similar problems and using similar techniques.
-        80-100: Mostly relevant; Projects addressing almost identical problems and using similar techniques.
-        Make sure the score is a number between 0 and 100 e.g., 81, 23, 45, 90, 98...
-        Q5: Please briefly state the reason for your score.
-        ####End Questions####
-        ####Begin Instructions####
-        Please provide your answer in .json format. The keys are <Summary>, <Similarity>, <Difference>, <Score>, <Reason>.
-        <Summary> is a one-sentence summary of the input paper (Q1).
-        <Similarity> is the similarities between this paper and my idea (Q2).
-        <Difference> is the differences between the paper and my idea (Q3).
-        <Score> is the similarity score (Q4).
-        <Reason> is the reason for your score (Q5).
-        ####End Instructions####
-        ####Begin Input####
-        This is the information of a project I found: [{existing_project}].
-        This is the description of my idea: [{my_project}].
-        ####End Input####
+        "content": f'''#### Begin Questions ####
+        Q1: Provide a one-sentence summary of the existing project.
+        Q2: Identify and describe similarities between this existing project and your idea.
+        Q3: Enumerate the differences between the existing project and your idea.
+        Q4: Assign a similarity score from 0 to 100, indicating the degree of relevance between the two projects:
+           - 0-20: Not relevant (Different fields, no shared methodologies)
+           - 20-40: Somewhat relevant (Same subfield, some shared aspects)
+           - 40-60: Relevant (Similar problems or methodologies, citation worthy)
+           - 60-80: Very relevant (Similar problems and methodologies)
+           - 80-100: Extremely relevant (Nearly identical problems and methodologies)
+           Ensure the score is a precise number within this range.
+        Q5: Justify the assigned score with a brief explanation, referring to "your project" to maintain personalization.
+        #### End Questions ####
+
+        #### Begin Instructions ####
+        Format your response as a JSON object with the following structure:
+        {{
+            "Summary": "A concise summary of the existing project.",
+          "Similarity": "Detailed similarities between the projects, referring to 'your project'.",
+          "Difference": "Key differences noted, again referring to 'your project'.",
+          "Score": "The similarity score, as a numerical value.",
+          "Reason": "Explanation for the assigned score, ensuring to address the user personally."
+        }}
+        Use the exact keys provided above for your response and maintain a personalized tone throughout.
+        #### End Instructions ####
+
+        #### Begin Input ####
+        Existing project information: [{existing_project}].
+        Your project description: [{my_project}].
+        #### End Input ####
         '''
     }
     return [info_sys, info_user]
