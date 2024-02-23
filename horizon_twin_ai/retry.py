@@ -33,7 +33,7 @@ def retry(
         def wrapper(*args, **kwargs):
             current_delay = delay
 
-            for attempt in range(0, tries):
+            for attempt in range(1, tries + 1):
                 try:
                     return func(*args, **kwargs)
                 except exceptions as e:
