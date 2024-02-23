@@ -1,6 +1,7 @@
 from openai import OpenAI
 from horizon_twin_ai.comparison import Comparison
 from horizon_twin_ai.prompt import compare_project_prompt
+from horizon_twin_ai.retry import retry
 import json
 
 
@@ -8,6 +9,7 @@ class GPTClient:
     def __init__(self, api_key: str):
         self.client = OpenAI(api_key=api_key)
 
+    @retry(tries=1, exceptions=(json.JSONDecodeError, KeyError))
     def compare_project(
         self, my_project: str, existing_project: str, model: str = "gpt-3.5-turbo"
     ) -> Comparison:
