@@ -36,7 +36,7 @@ async function fetchData() {
         data.results.forEach((result, index) => {
             const resultElement = document.createElement('div');
             resultElement.innerHTML = `
-            <div class="max-w-3xl mx-auto bg-gray-800 text-white p-4 my-4 rounded-lg shadow-lg">
+            <div class="max-w-4xl mx-auto bg-gray-800 text-white p-4 my-4 rounded-lg shadow-lg">
                 <div class="flex justify-between items-start mb-2">
                     <h3 class="text-xl font-semibold">${result.project.title}</h3>
                     <p class="text-gray-400">Comparison score: ${result.comparison.score}</p>
