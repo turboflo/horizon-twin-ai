@@ -37,22 +37,43 @@ async function fetchData() {
             const resultElement = document.createElement('div');
             resultElement.innerHTML = `
             <div class="max-w-4xl mx-auto bg-gray-800 text-white p-4 my-4 rounded-lg shadow-lg">
-                <div class="flex justify-between items-start mb-2">
+                <div class="flex justify-between items-start mb-4">
                     <h3 class="text-xl font-semibold">${result.project.title}</h3>
-                    <p class="text-gray-400">Comparison score: ${result.comparison.score}</p>
+                    <div style="width: 25%;" class="bg-gray-700 rounded-full h-2.5">
+                        <div class="bg-blue-500 h-2.5 rounded-full" style="width: ${Math.max(result.comparison.score, 5)}%;"></div>
+                        <p class="text-center text-sm text-gray-500">${result.comparison.score}/100</p>
+                    </div>
                 </div>
                 <p class="mb-4">${result.comparison.summary}</p>
-                <details class="bg-gray-700 p-3 rounded">
-                    <summary class="font-semibold cursor-pointer hover:text-blue-400">Details</summary>
-                    <div class="text-gray-300 space-y-2 mt-2">
-                        <p><strong>Similarity:</strong> ${result.comparison.similarity}</p>
-                        <p><strong>Difference:</strong> ${result.comparison.difference}</p>
-                        <p><strong>Score reasoning:</strong> ${result.comparison.reason}</p>
-                        <p><strong>Vector similarity:</strong> ${result.project.score}</p>
-                        <p><strong>Original objective:</strong> ${result.project.objective}</p>
-                    </div>
+                <details class="bg-gray-800 p-4 rounded-lg shadow-md">
+                    <summary class="font-semibold cursor-pointer hover:text-blue-500 hover:bg-gray-700 text-lg rounded-md p-2 transition-colors duration-300 ease-in-out">
+                        Details
+                    </summary>
+    <div class="text-gray-300 mt-4 space-y-3">
+    <div class="p-3 bg-gray-700 rounded-lg">
+        <span class="font-semibold block mb-2">Similarity</span>
+        <div class="p-2 bg-gray-600 rounded">${result.comparison.similarity}</div>
+    </div>
+    <div class="p-3 bg-gray-700 rounded-lg">
+        <span class="font-semibold block mb-2">Difference</span>
+        <div class="p-2 bg-gray-600 rounded">${result.comparison.difference}</div>
+    </div>
+    <div class="p-3 bg-gray-700 rounded-lg">
+        <span class="font-semibold block mb-2">Score reasoning</span>
+        <div class="p-2 bg-gray-600 rounded">${result.comparison.reason}</div>
+    </div>
+    <div class="p-3 bg-gray-700 rounded-lg">
+        <span class="font-semibold block mb-2">Vector similarity</span>
+        <div class="p-2 bg-gray-600 rounded">${result.project.score}</div>
+    </div>
+    <div class="p-3 bg-gray-700 rounded-lg">
+        <span class="font-semibold block mb-2">Original objective</span>
+        <div class="p-2 bg-gray-600 rounded">${result.project.objective}</div>
+    </div>
+</div>
+
                 </details>
-            </div> 
+            </div>        
     `;
             resultsContainer.appendChild(resultElement);
         });
