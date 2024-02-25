@@ -46,7 +46,7 @@ async function fetchData() {
                 </div>
                 <p class="mb-4">${result.comparison.summary}</p>
                 <details class="bg-gray-800 p-4 rounded-lg shadow-md">
-                    <summary class="font-semibold cursor-pointer hover:text-blue-500 hover:bg-gray-700 text-lg rounded-md p-2 transition-colors duration-300 ease-in-out">
+                    <summary class="font-semibold cursor-pointer hover:bg-gray-700 text-lg rounded-md p-2 transition-colors duration-300 ease-in-out">
                         Details
                     </summary>
     <div class="text-gray-300 mt-4 space-y-3">
