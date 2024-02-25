@@ -29,14 +29,14 @@ class QueryPayload(BaseModel):
 
 @app.post("/query")
 async def query(payload: QueryPayload):
-    results = mock_search_and_compare(
-        project_description=payload.project_description, top_k=payload.top_k
-    )
-    # results = client.search_and_compare(
-    #     project_description=payload.project_description,
-    #     model=payload.model,
-    #     top_k=payload.top_k,
+    # results = mock_search_and_compare(
+    #     project_description=payload.project_description, top_k=payload.top_k
     # )
+    results = client.search_and_compare(
+        project_description=payload.project_description,
+        model=payload.model,
+        top_k=payload.top_k,
+    )
     response = {
         "project_description": payload.project_description,
         "model": payload.model,
